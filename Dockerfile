@@ -5,8 +5,8 @@ FROM php:8.2-fpm
 RUN apt-get update
 # gd
 RUN apt-get install -y build-essential  openssl nginx libfreetype6-dev libjpeg-dev libpng-dev libwebp-dev zlib1g-dev libzip-dev gcc g++ make vim unzip curl git jpegoptim optipng pngquant gifsicle locales libonig-dev nodejs 
-RUN docker-php-ext-configure gd 
-RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN docker-php-ext-install -j$(nproc) gd
 # gmp
 RUN apt-get install -y --no-install-recommends libgmp-dev
 RUN docker-php-ext-install gmp
@@ -34,9 +34,6 @@ RUN pecl install mongodb && docker-php-ext-enable mongodb
 RUN pecl install redis && docker-php-ext-enable redis
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends
 RUN pecl install imagick && docker-php-ext-enable imagick
-RUN a2enmod rewrite
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
-RUN docker-php-ext-install -j$(nproc) gd
 
 COPY ./php.ini $PHP_INI_DIR/conf.d/custom.ini
 
