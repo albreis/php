@@ -4,9 +4,8 @@ FROM php:8.2-apache
 # Install environment dependencies
 RUN apt-get update
 # gd
-RUN apt-get install -y build-essential  openssl nginx libfreetype6-dev libjpeg-dev libpng-dev libwebp-dev zlib1g-dev libzip-dev gcc g++ make vim unzip curl git jpegoptim optipng pngquant gifsicle locales libonig-dev nodejs 
-RUN docker-php-ext-configure gd 
-RUN docker-php-ext-install gd
+RUN apt-get install -y build-essential libwebp-dev openssl nginx libfreetype6-dev libjpeg-dev libpng-dev libwebp-dev zlib1g-dev libzip-dev gcc g++ make vim unzip curl git jpegoptim optipng pngquant gifsicle locales libonig-dev nodejs 
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp && docker-php-ext-install gd
 # gmp
 RUN apt-get install -y --no-install-recommends libgmp-dev
 RUN docker-php-ext-install gmp
