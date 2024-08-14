@@ -3,7 +3,7 @@ name: Build and Push Docker image
 on:
   push:
     branches:
-      - "*"
+      - "8.2-fpm"
 
 jobs:
   build_and_push:
@@ -23,4 +23,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: albreis/php:${{ github.ref_name }}
+          tags: albreis/php:8.2-fpm
