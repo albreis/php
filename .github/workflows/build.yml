@@ -3,7 +3,7 @@ name: Build and Push Docker image
 on:
   push:
     branches:
-      - "php8.2-cli"
+      - "8.2-cli"
 
 jobs:
   build_and_push:
@@ -23,4 +23,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: albreis/php:php8.2-cli
+          tags: albreis/php:8.2-cli
