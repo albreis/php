@@ -1,5 +1,5 @@
 # 2022 update
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Install environment dependencies
 RUN apt-get update
